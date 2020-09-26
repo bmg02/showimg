@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <link rel='stylesheet' href='./index.css' />
+        <title>Show Image in Browser</title>
+    </head>
+    <body>
+        <input type='file' id='upload-file' />
+        <br/>
+        <button onClick='reset_image()' style='color: #444'>Reset</button>
+        <br/><br/>
+        <img src='' id='image-ele' />
+        <script>
+            let uploadedFile = document.getElementById('upload-file');
+            let imageEle = document.getElementById('image-ele');
+            
+            let fr = new FileReader();
+            fr.onload = (e) => imageEle.setAttribute('src', e.target.result);
+            
+            uploadedFile.addEventListener('change', () => fr.readAsDataURL(uploadedFile.files[0]));
+            
+            function reset_image() {
+                imageEle.setAttribute('src', '');
+                uploadedFile.value = '';
+            }
+        </script>
+    </body>
+</html>
